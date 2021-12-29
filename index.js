@@ -192,9 +192,7 @@ module.exports.Menu = class extends EventEmitter {
         : Object.prototype.hasOwnProperty.call(this.currentPage.reactions, reaction.emoji.id) ? reaction.emoji.id : null
 
       // If a 3rd party tries to add reactions or the reaction isn't registered, delete it.
-      if (user.id !== this.userID || !Object.keys(this.currentPage.reactions).includes(reactionName)) {
-        return reaction.users.remove(user)
-      }
+      reaction.users.remove(user)
 
       if (reactionName) {
         if (typeof this.currentPage.reactions[reactionName] === 'function') {
